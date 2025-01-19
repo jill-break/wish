@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Wish - MyWish</title>
+  <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Add Your Wish</h1>
+      <div class="profile-icon">
+        <a href="profile.html">
+          <img src="https://via.placeholder.com/50" alt="Profile Icon">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="add-wish-form">
+      <h2>Fill in the details of your gift wish</h2>
+      <form id="wish-form" enctype="multipart/form-data">
+        <label for="gift-name">Gift Name:</label>
+        <input type="text" id="gift-name" name="gift-name" required>
+
+        <label for="price-range">Estimated Price Range:</label>
+        <input type="text" id="price-range" name="price-range" required>
+
+        <label for="gift-description">Gift Description:</label>
+        <textarea id="gift-description" name="gift-description" required></textarea>
+
+        <label for="gift-image">Upload a Picture of the Gift:</label>
+        <input type="file" id="gift-image" name="gift-image" accept="image/*" required>
+
+        <label for="expected-date">Expected Date of Grant:</label>
+        <input type="date" id="expected-date" name="expected-date" required>
+
+        <label for="contact-info">Contact Info (for grantor to reach you):</label>
+        <input type="text" id="contact-info" name="contact-info" required>
+
+        <button type="submit">Submit Your Wish</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MyWish. Spread the joy!</p>
+  </footer>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>

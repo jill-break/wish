@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - MyWish</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1>Welcome to MyWish</h1>
+      <div class="profile-icon">
+        <!-- Display Login Button if not logged in, else display Profile Icon -->
+        <a href="./login/login.html" id="login-link" class="auth-link">Login</a>
+        <a href="profile.html" id="profile-link" class="auth-link" style="display: none;">
+          <img src="https://via.placeholder.com/50" alt="Profile Icon">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="wish-list">
+      <h2>Wish List</h2>
+      <div class="wish-cards">
+        <!-- Example of a wish card. These can be dynamically generated using JS or server-side data. -->
+        <div class="wish-card">
+          <img src="https://via.placeholder.com/200" alt="Gift Image" class="gift-image">
+          <h3>Gift Name: Cozy Sweater</h3>
+          <p>Estimated Price Range: $30 - $50</p>
+          <p>Description: A cozy sweater for winter. A perfect gift for the season!</p>
+          <button class="grant-wish-btn">Grant This Wish</button>
+        </div>
+        <div class="wish-card">
+          <img src="https://via.placeholder.com/200" alt="Gift Image" class="gift-image">
+          <h3>Gift Name: Bluetooth Headphones</h3>
+          <p>Estimated Price Range: $100 - $150</p>
+          <p>Description: Wireless headphones for listening to music and calls.</p>
+          <button class="grant-wish-btn">Grant This Wish</button>
+        </div>
+        <!-- More wish cards can go here -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MyWish. Spread the joy!</p>
+  </footer>
+
+  <script>
+    // Sample JavaScript to handle login state (you can implement your login system)
+    var loggedIn = false;  // This will be dynamically set based on user authentication
+
+    // Conditionally display Login/Profile
+    if (loggedIn) {
+      document.getElementById("login-link").style.display = "none";
+      document.getElementById("profile-link").style.display = "block";
+    } else {
+      document.getElementById("login-link").style.display = "block";
+      document.getElementById("profile-link").style.display = "none";
+    }
+  </script>
+</body>
+</html>
