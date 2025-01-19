@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Register - MyWish</title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MyWish</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <h2>Create an Account</h2>
+        <form id="register-form" action="#" method="POST">
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Enter Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+
+        <div class="social-login">
+            <p>Or register with:</p>
+             <button class="social-btn google"><i class="fab fa-google"></i></button>
+                <button class="social-btn icloud"><i class="fab fa-apple"></i></button>
+                <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+        </div>
+        
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 MyWish. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
