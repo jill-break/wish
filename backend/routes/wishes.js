@@ -13,10 +13,19 @@ router.get('/', async (req, res) => {
 });
 
 // Create a wish
-router.post('/', async (req, res) => {
-  const { title, description, priceRange, imageUrl, user, expectedDate, contactInfo } = req.body;
+const auth = require('../middleware/auth');
+router.post('/', auth, async (req, res) => {
+  const { title, description, priceRange, imageUrl, expectedDate, contactInfo } = req.body;
   try {
-    const wish = new Wish({ title, description, priceRange, imageUrl, user, expectedDate, contactInfo });
+    const wish = new Wish({ 
+      title, 
+      description, 
+      priceRange, 
+      imageUrl, 
+      user: req.user.id, 
+      expectedDate, 
+      contactInfo 
+    });
     await wish.save();
     res.status(201).json(wish);
   } catch (err) {
