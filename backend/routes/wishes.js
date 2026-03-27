@@ -29,7 +29,8 @@ router.post('/', auth, async (req, res) => {
     await wish.save();
     res.status(201).json(wish);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    console.error('Create wish error:', err.message);
+    res.status(400).json({ message: 'Error creating wish' });
   }
 });
 
@@ -39,7 +40,8 @@ router.get('/me', auth, async (req, res) => {
     const wishes = await Wish.find({ user: req.user.id });
     res.json(wishes);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Fetch my wishes error:', err.message);
+    res.status(500).json({ message: 'Error fetching your wishes' });
   }
 });
 
