@@ -7,6 +7,9 @@ const wishesContainer = document.getElementById("wishes");
 async function displayWishes() {
   if (!wishesContainer) return;
 
+  // Show loading state before fetch
+  wishesContainer.innerHTML = '<div class="loader-container"><div class="spinner"></div><p>Searching for wishes...</p></div>';
+
   try {
     const wishes = await apiService.getWishes();
     wishesContainer.innerHTML = ''; // Clear existing cards
