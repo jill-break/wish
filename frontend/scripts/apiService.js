@@ -57,6 +57,18 @@ const apiService = {
       method: 'PATCH',
       headers: { 'x-auth-token': token },
     });
+    
+    // Handle non-JSON or error responses gracefully
+    if (!res.ok) {
+      const errorText = await res.text();
+      try {
+        const errorJson = JSON.parse(errorText);
+        throw new Error(errorJson.message || 'Server error');
+      } catch (e) {
+        throw new Error('Server returned ' + res.status + ' - Please check if the backend is updated.');
+      }
+    }
+    
     return res.json();
   },
 };
