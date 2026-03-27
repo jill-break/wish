@@ -1,4 +1,16 @@
-/* Basic Reset */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-red: #D42426;
+  --secondary-green: #165B33;
+  --accent-gold: #EFD032;
+  --bg-gradient: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --text-dark: #2d3436;
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,200 +18,172 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  color: var(--text-dark);
   line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure body takes at least the full height of the viewport */
 }
 
-header, footer {
-  background-color: #333;
+header {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--primary-red), var(--secondary-green));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ... (previous styles) */
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 4rem 2rem;
+  background: var(--glass-bg);
+  border-radius: 30px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+}
+
+.hero-section h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-red);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  opacity: 0.8;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header h3 {
+  font-size: 1.5rem;
+  color: var(--secondary-green);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  opacity: 0.7;
+}
+
+.auth-link {
+  text-decoration: none;
+  color: var(--primary-red);
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  border: 2px solid var(--primary-red);
+  transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+  background: var(--primary-red);
   color: white;
-  padding: 10px;
+  transform: translateY(-2px);
+}
+
+main {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-h1, h2 {
-  font-size: 1.8em;
-}
-
-button {
-  background-color: #4527A0;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-button:hover {
-  background-color: #FFCC00;
-}
-
-/* Wish Cards */
 .wish-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 2rem;
 }
 
 .wish-card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
 }
 
 .wish-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
 }
 
-.wish-card img {
+.gift-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
 .wish-card-content {
-  padding: 15px;
+  padding: 1.5rem;
 }
 
-.wish-card-content h3 {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
+.wish-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--secondary-green);
 }
 
-.wish-card-content p {
-  margin: 0 0 10px;
-  color: #555;
-}
-
-.wish-card button {
-  background: #2d87f5;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.wish-card button:hover {
-  background: #256ecc;
-}
-
-/* Profile Icon */
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.profile-icon {
-  display: flex;
-  align-items: center;
-}
-
-.profile-icon img {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.profile-icon img:hover {
-  transform: scale(1.1);
-}
-
-/* Add Wish Form */
-#add-wish-form {
-  width: 50%;
-  margin: 20px auto;
-}
-
-#add-wish-form label {
-  display: block;
-  margin-top: 10px;
-}
-
-#add-wish-form input, #add-wish-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-}
-
-#add-wish-form textarea {
-  resize: vertical;
-  height: 100px;
-}
-
-#add-wish-form input[type="file"] {
-  display: inline-block;
-}
-
-/* Wish List */
-#wish-list {
-  margin-top: 20px;
-  flex-grow: 1; /* Allow the wish list to expand to take up available space */
-}
-
-.wish-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.wish-card {
-  width: 200px;
-  padding: 20px;
-  background-color: #f1f1f1;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.wish-card img {
-  width: 100%;
-  border-radius: 10px;
+.price {
+  font-weight: 700;
+  color: var(--primary-red);
+  margin-bottom: 1rem;
 }
 
 .grant-wish-btn {
-  background-color: #FFCC00;
-  color: #333;
+  background: var(--secondary-green);
+  color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 10px;
-  font-size: 1em;
+  transition: background 0.3s ease;
+  width: 100%;
 }
 
 .grant-wish-btn:hover {
-  background-color: #4527A0;
-  color: white;
+  background: #0f4024;
 }
 
-.auth-link {
-  color: #FFCC00;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.auth-link:hover {
-  text-decoration: underline;
-}
-
-/* Footer */
 footer {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #333;
-  color: white;
   text-align: center;
-  position: relative;
-  width: 100%;
-  bottom: 0;
+  padding: 3rem 0;
+  background: white;
+  margin-top: 5rem;
 }
