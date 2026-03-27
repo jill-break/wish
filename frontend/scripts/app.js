@@ -7,18 +7,15 @@ const wishesContainer = document.getElementById("wishes");
 async function displayWishes() {
   if (!wishesContainer) return;
 
+  // Show loading state before fetch
+  wishesContainer.innerHTML = '<div class="loader-container"><div class="spinner"></div><p>Searching for wishes...</p></div>';
+
   try {
     const wishes = await apiService.getWishes();
     wishesContainer.innerHTML = ''; // Clear existing cards
 
     if (wishes.length === 0) {
-      wishesContainer.innerHTML = '<div class="loader-container"><div class="spinner"></div><p>Searching for wishes...</p></div>';
-      // Simulate loading for demo or just show the empty state after fetch
-      setTimeout(() => {
-        if (wishes.length === 0) {
-          wishesContainer.innerHTML = '<p class="no-wishes">No wishes found. Be the first to make a wish!</p>';
-        }
-      }, 1000);
+      wishesContainer.innerHTML = '<p class="no-wishes">No wishes found. Be the first to make a wish!</p>';
       return;
     }
 
