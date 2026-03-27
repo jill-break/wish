@@ -1,66 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - MyWish</title>
-    <link rel="stylesheet" href="profile.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile - MyWish</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="profile.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>MyWish</h1>
-            <nav>
-                <a href="../index.html">Home</a>
-                <a href="login.html">Login</a>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="header-container">
+      <h1><a href="../index.html" style="text-decoration: none; color: inherit;">MyWish <span>🎄</span></a></h1>
+      <div class="header-actions">
+        <a href="../index.html" class="auth-link">Home</a>
+        <button id="logout-btn" class="auth-link">Logout</button>
+      </div>
+    </div>
+  </header>
 
-    <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-img">
-                <img src="profile-pic-placeholder.png" alt="Profile Picture">
-            </div>
-            <div class="profile-info">
-                <h2>John Doe</h2>
-                <p>Email: john.doe@example.com</p>
-                <p>Member since: January 2025</p>
-            </div>
-        </div>
-
-        <div class="profile-actions">
-            <button class="btn add-wish-btn" onclick="window.location.href='addwish.html'">Add Wish</button>
-            <button class="btn edit-profile-btn">Edit Profile</button>
-        </div>
-
-        <div class="wish-list">
-            <h3>Your Wishes</h3>
-            <div class="wish-card">
-                <img src="gift-img1.jpg" alt="Gift Image">
-                <div class="wish-details">
-                    <h4>Gift Name</h4>
-                    <p>Estimated Price: $100 - $150</p>
-                    <p>Expected Grant Date: December 2025</p>
-                </div>
-            </div>
-
-            <div class="wish-card">
-                <img src="gift-img2.jpg" alt="Gift Image">
-                <div class="wish-details">
-                    <h4>Gift Name</h4>
-                    <p>Estimated Price: $50 - $100</p>
-                    <p>Expected Grant Date: June 2025</p>
-                </div>
-            </div>
-        </div>
+  <main>
+    <div id="profile-info" class="profile-card glass">
+      <!-- Loaded dynamically via profile.js -->
+      <div class="skeleton-loader">Loading profile...</div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 MyWish. All rights reserved.</p>
-    </footer>
+    <section class="user-actions">
+      <a href="addwish.html" class="btn-primary">✨ Add New Wish</a>
+    </section>
 
-    <script src="app.js"></script>
+    <section id="my-wishes" class="my-wishes-section">
+      <h3>My Wishes</h3>
+      <div class="wish-cards" id="user-wishes">
+        <!-- User's wishes will be loaded here -->
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="profile.js"></script>
+  <script type="module">
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      window.location.href = '../login/login.html';
+    });
+  </script>
 </body>
 </html>

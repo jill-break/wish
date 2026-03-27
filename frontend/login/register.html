@@ -1,55 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <title>Register - MyWish</title>
-    <link rel="stylesheet" href="reg.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - MyWish</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>MyWish</h1>
-            <nav>
-                <a href="../index.html">Home</a>
-                <a href="login.html">Login</a>
-            </nav>
+  <div class="auth-container">
+    <div class="auth-box glass">
+      <h1>Join MyWish 🎁</h1>
+      <p>Create an account to list your Christmas wishes.</p>
+      <form id="register-form">
+        <div class="input-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required placeholder="John Doe">
         </div>
-    </header>
-
-    <div class="form-container">
-        <h2>Create an Account</h2>
-        <form id="register-form" action="#" method="POST">
-            <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="Enter Username" required>
-            </div>
-            <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Enter Email" required>
-            </div>
-            <div class="form-group">
-                <input type="password" id="password" name="password" placeholder="Enter password" required>
-            </div>
-            <div class="form-group">
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
-            </div>
-            <button type="submit" class="btn">Register</button>
-        </form>
-
-        <div class="social-login">
-            <p>Or register with:</p>
-             <button class="social-btn google"><i class="fab fa-google"></i></button>
-                <button class="social-btn icloud"><i class="fab fa-apple"></i></button>
-                <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="example@email.com">
         </div>
-        
-        <p>Already have an account? <a href="login.html">Login here</a></p>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary">Sign Up</button>
+      </form>
+      <p class="auth-footer">Already have an account? <a href="login.html">Login</a></p>
     </div>
-
-    <footer>
-        <p>&copy; 2025 MyWish. All rights reserved.</p>
-    </footer>
-
-    <script src="app.js"></script>
+  </div>
+  <script type="module" src="auth.js"></script>
 </body>
 </html>

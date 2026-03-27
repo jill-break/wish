@@ -1,51 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-
-    <title>Login - MyWish</title>
-    <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - MyWish</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-
-    <header>
-        <h1>Welcome to MyWish</h1>
-    </header>
-
-    <div class="auth-container">
-        <div class="login-form">
-            <h2>Login</h2>
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <input type="text" id="username" name="username" placeholder="Username" required>
-                </div>
-                
-                <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </div>
-                
-                <button type="submit">Login</button>
-            </form>
-            
-            <div class="social-login">
-                <p>Or login with:</p>
-                <button class="social-btn google"><i class="fab fa-google"></i></button>
-                <button class="social-btn icloud"><i class="fab fa-apple"></i></button>
-                <button class="social-btn facebook"><i class="fab fa-facebook-f"></i></button>
-
-            </div>
-            
-            <div class="register-link">
-                <p>Don't have an account? <a href="register.html">Register</a></p>
-            </div>
+  <div class="auth-container">
+    <div class="auth-box glass">
+      <h1>Welcome Back 🎄</h1>
+      <p>Log in to manage your wishes.</p>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="example@email.com">
         </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary">Login</button>
+      </form>
+      <p class="auth-footer">Don't have an account? <a href="register.html">Sign up</a></p>
     </div>
-
-    <footer>
-        <p>&copy; 2025 MyWish. All rights reserved.</p>
-    </footer>
-
+  </div>
+  <script type="module" src="auth.js"></script>
 </body>
 </html>
