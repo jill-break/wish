@@ -21,15 +21,9 @@ services:
       - mywish-network
 
   mongodb:
-    image: mongo:7.0
+    image: mongo:4.4
     ports:
       - "27017:27017"
-    healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand({ping: 1})"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
     volumes:
       - mongo-data:/data/db
     networks:
