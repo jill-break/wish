@@ -33,6 +33,13 @@ const apiService = {
     return res.json();
   },
 
+  getMyWishes: async (token) => {
+    const res = await fetch(`${API_URL}/wishes/me`, {
+      headers: { 'x-auth-token': token },
+    });
+    return res.json();
+  },
+
   createWish: async (wishData, token) => {
     const res = await fetch(`${API_URL}/wishes`, {
       method: 'POST',
@@ -41,6 +48,14 @@ const apiService = {
         'x-auth-token': token,
       },
       body: JSON.stringify(wishData),
+    });
+    return res.json();
+  },
+
+  grantWish: async (wishId, token) => {
+    const res = await fetch(`${API_URL}/wishes/${wishId}/grant`, {
+      method: 'PATCH',
+      headers: { 'x-auth-token': token },
     });
     return res.json();
   },
