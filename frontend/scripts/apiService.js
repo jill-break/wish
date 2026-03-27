@@ -37,6 +37,10 @@ const apiService = {
     const res = await fetch(`${API_URL}/wishes/me`, {
       headers: { 'x-auth-token': token },
     });
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to fetch your wishes');
+    }
     return res.json();
   },
 
@@ -49,6 +53,10 @@ const apiService = {
       },
       body: JSON.stringify(wishData),
     });
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to create wish');
+    }
     return res.json();
   },
 
@@ -61,12 +69,15 @@ const apiService = {
     // Handle non-JSON or error responses gracefully
     if (!res.ok) {
       const errorText = await res.text();
+      let errorMessage = 'Server returned ' + res.status;
       try {
         const errorJson = JSON.parse(errorText);
-        throw new Error(errorJson.message || 'Server error');
+        errorMessage = errorJson.message || errorMessage;
       } catch (e) {
-        throw new Error('Server returned ' + res.status + ' - Please check if the backend is updated.');
+        // Fallback to text or generic error
+        if (errorText.length < 100) errorMessage = errorText || errorMessage;
       }
+      throw new Error(errorMessage);
     }
     
     return res.json();

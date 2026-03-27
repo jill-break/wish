@@ -11,18 +11,39 @@ async function loadProfile() {
     return;
   }
 
+async function loadProfile() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = '../login/login.html';
+    return;
+  }
+
   try {
     const user = await apiService.getCurrentUser(token);
     if (profileInfo) {
-      profileInfo.innerHTML = `
-        <div class="profile-header">
-           <img src="${user.avatar || 'https://via.placeholder.com/100'}" alt="Avatar" class="profile-avatar">
-           <div class="profile-text">
-             <h2>Welcome, ${user.name}!</h2>
-             <p>Email: ${user.email}</p>
-           </div>
-        </div>
-      `;
+      profileInfo.innerHTML = ''; // Clear loading state
+      
+      const header = document.createElement('div');
+      header.className = 'profile-header';
+      
+      const avatar = document.createElement('img');
+      avatar.src = user.avatar || 'https://via.placeholder.com/100';
+      avatar.className = 'profile-avatar';
+      
+      const text = document.createElement('div');
+      text.className = 'profile-text';
+      
+      const welcome = document.createElement('h2');
+      welcome.textContent = `Welcome, ${user.name}!`;
+      
+      const email = document.createElement('p');
+      email.textContent = `Email: ${user.email}`;
+      
+      text.appendChild(welcome);
+      text.appendChild(email);
+      header.appendChild(avatar);
+      header.appendChild(text);
+      profileInfo.appendChild(header);
     }
     loadUserWishes(token);
   } catch (err) {
@@ -40,23 +61,42 @@ async function loadUserWishes(token) {
     userWishesContainer.innerHTML = '';
 
     if (wishes.length === 0) {
-      userWishesContainer.innerHTML = '<p class="no-wishes">You haven\'t made any wishes yet. Go ahead and add one!</p>';
+      const msg = document.createElement('p');
+      msg.className = 'no-wishes';
+      msg.textContent = "You haven't made any wishes yet. Go ahead and add one!";
+      userWishesContainer.appendChild(msg);
       return;
     }
 
     wishes.forEach(wish => {
       const wishCard = document.createElement('div');
       wishCard.classList.add('wish-card');
-      wishCard.innerHTML = `
-        <div class="wish-card-inner">
-           <img src="${wish.imageUrl || 'https://via.placeholder.com/300x150?text=MyWish'}" alt="${wish.title}">
-           <div class="wish-info">
-             <h4>${wish.title}</h4>
-             <p class="wish-status">${wish.granted ? '✅ Granted' : '⏳ Pending'}</p>
-             <p>${wish.description}</p>
-           </div>
-        </div>
-      `;
+      
+      const inner = document.createElement('div');
+      inner.className = 'wish-card-inner';
+      
+      const img = document.createElement('img');
+      img.src = wish.imageUrl || 'https://via.placeholder.com/300x150?text=MyWish';
+      
+      const info = document.createElement('div');
+      info.className = 'wish-info';
+      
+      const title = document.createElement('h4');
+      title.textContent = wish.title;
+      
+      const status = document.createElement('p');
+      status.className = 'wish-status';
+      status.textContent = wish.granted ? '✅ Granted' : '⏳ Pending';
+      
+      const desc = document.createElement('p');
+      desc.textContent = wish.description;
+      
+      info.appendChild(title);
+      info.appendChild(status);
+      info.appendChild(desc);
+      inner.appendChild(img);
+      inner.appendChild(info);
+      wishCard.appendChild(inner);
       userWishesContainer.appendChild(wishCard);
     });
   } catch (err) {
