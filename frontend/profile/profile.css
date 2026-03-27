@@ -50,6 +50,61 @@ textarea:focus {
   border-color: var(--primary-red);
 }
 
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--primary-red);
+  object-fit: cover;
+}
+
+.profile-text {
+  text-align: left;
+}
+
+.wish-card-inner {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.wish-card-inner img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.wish-info {
+  padding: 1.5rem;
+}
+
+.wish-info h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-green);
+}
+
+.wish-status {
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.05);
+}
+
 .skeleton-loader {
   opacity: 0.6;
   font-style: italic;
