@@ -13,8 +13,10 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - ./backend:/app
-      - /app/node_modules
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      - /app/backend/node_modules
+    working_dir: /app/backend
     networks:
       - mywish-network
 
