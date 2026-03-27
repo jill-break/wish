@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
     const wishes = await Wish.find().populate('user', 'name');
     res.json(wishes);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('Fetch all wishes error:', err.message);
+    res.status(500).json({ message: 'Error fetching wishes' });
   }
 });
 
