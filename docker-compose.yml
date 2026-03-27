@@ -9,9 +9,9 @@ services:
     environment:
       - PORT=5000
       - MONGO_URI=mongodb://mongodb:27017/mywish
-      - JWT_SECRET=your_jwt_secret_key
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
     volumes:
       - ./backend:/app/backend
       - ./frontend:/app/frontend
@@ -21,9 +21,15 @@ services:
       - mywish-network
 
   mongodb:
-    image: mongo:latest
+    image: mongo:8.0
     ports:
       - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     volumes:
       - mongo-data:/data/db
     networks:

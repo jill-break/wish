@@ -5,13 +5,16 @@ FROM node:18-slim
 WORKDIR /app/backend
 
 # Copy package files
-COPY package*.json ./
+COPY --chown=node:node package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy application files
-COPY . .
+COPY --chown=node:node . .
+
+# Use non-root user
+USER node
 
 # Expose port
 EXPOSE 5000
