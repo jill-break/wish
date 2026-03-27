@@ -19,7 +19,7 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/wishes', require('./routes/wishes'));
 
 // Catch-all route for frontend (for SPA-like behavior)
-app.get('/:path*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
