@@ -1,0 +1,17 @@
+# CodeRabbit Configuration
+# For more information, see https://docs.coderabbit.ai/getting-started/configuration-file
+
+language: "en-US"
+reviews:
+  profile: "chill"
+  auto_review:
+    enabled: true
+    draft: false
+  request_changes_workflow: false
+  high_level_summary: true
+  hypothetical_questions: true
+  path_instructions:
+    - path: "server/**"
+      instructions: "Ensure all API routes have proper error handling and input validation."
+    - path: "scripts/**"
+      instructions: "Check for efficient DOM manipulation and proper state management."
