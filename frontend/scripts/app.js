@@ -3,6 +3,35 @@ import apiService from './apiService.js';
 // Get the wish list container
 const wishesContainer = document.getElementById("wishes");
 
+// Handle granting a wish
+if (wishesContainer) {
+  wishesContainer.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('grant-wish-btn')) {
+      const wishId = e.target.getAttribute('data-id');
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        alert('Please login to grant a wish!');
+        window.location.href = './login/login.html';
+        return;
+      }
+
+      try {
+        const result = await apiService.grantWish(wishId, token);
+        if (result.message) {
+          alert(result.message);
+        } else {
+          alert('Thank you for your generosity! Wish granted! 🎁');
+          displayWishes(); // Refresh the list
+        }
+      } catch (err) {
+        console.error('Error granting wish:', err);
+        alert('Failed to grant wish. Please try again.');
+      }
+    }
+  });
+}
+
 // Function to display wishes
 async function displayWishes() {
   if (!wishesContainer) return;
