@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/mywish
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/app/backend
+      - ./frontend:/app/frontend
+      - /app/backend/node_modules
+    working_dir: /app/backend
+    networks:
+      - mywish-network
+
+  mongodb:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mywish-network
+
+networks:
+  mywish-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
