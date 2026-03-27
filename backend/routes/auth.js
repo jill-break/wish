@@ -19,7 +19,8 @@ router.post('/register', async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d' });
     res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('API Error:', err.message);
+    res.status(500).json({ message: 'An internal server error occurred' });
   }
 });
 
@@ -37,7 +38,8 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d' });
     res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('API Error:', err.message);
+    res.status(500).json({ message: 'An internal server error occurred' });
   }
 });
 
@@ -48,7 +50,8 @@ router.get('/me', auth, async (req, res) => {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    console.error('API Error:', err.message);
+    res.status(500).json({ message: 'An internal server error occurred' });
   }
 });
 

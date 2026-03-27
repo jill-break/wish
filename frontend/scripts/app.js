@@ -52,15 +52,36 @@ async function displayWishes() {
     wishes.forEach((wish) => {
       const wishCard = document.createElement("div");
       wishCard.classList.add("wish-card");
-      wishCard.innerHTML = `
-        <img src="${wish.imageUrl || 'https://via.placeholder.com/400x200?text=MyWish'}" alt="${wish.title}" class="gift-image">
-        <div class="wish-card-content">
-          <h3>${wish.title}</h3>
-          <p class="price">${wish.priceRange}</p>
-          <p>${wish.description}</p>
-          <button class="grant-wish-btn" data-id="${wish._id}">Grant This Wish</button>
-        </div>
-      `;
+      
+      const img = document.createElement("img");
+      img.src = wish.imageUrl || 'https://via.placeholder.com/400x200?text=MyWish';
+      img.alt = wish.title;
+      img.className = "gift-image";
+      
+      const content = document.createElement("div");
+      content.className = "wish-card-content";
+      
+      const title = document.createElement("h3");
+      title.textContent = wish.title;
+      
+      const price = document.createElement("p");
+      price.className = "price";
+      price.textContent = wish.priceRange;
+      
+      const desc = document.createElement("p");
+      desc.textContent = wish.description;
+      
+      const btn = document.createElement("button");
+      btn.className = "grant-wish-btn";
+      btn.setAttribute("data-id", wish._id);
+      btn.textContent = "Grant This Wish";
+      
+      content.appendChild(title);
+      content.appendChild(price);
+      content.appendChild(desc);
+      content.appendChild(btn);
+      wishCard.appendChild(img);
+      wishCard.appendChild(content);
       wishesContainer.appendChild(wishCard);
     });
   } catch (err) {

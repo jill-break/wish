@@ -8,6 +8,10 @@ const apiService = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData),
     });
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Registration failed');
+    }
     return res.json();
   },
 
@@ -17,6 +21,10 @@ const apiService = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),
     });
+    if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Login failed');
+    }
     return res.json();
   },
 
@@ -24,6 +32,9 @@ const apiService = {
     const res = await fetch(`${API_URL}/auth/me`, {
       headers: { 'x-auth-token': token },
     });
+    if (!res.ok) {
+        throw new Error('Failed to fetch user profile');
+    }
     return res.json();
   },
 
