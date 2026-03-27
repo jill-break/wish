@@ -3,6 +3,36 @@ import apiService from './apiService.js';
 // Get the wish list container
 const wishesContainer = document.getElementById("wishes");
 
+// Handle granting a wish
+if (wishesContainer) {
+  wishesContainer.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.grant-wish-btn');
+    if (btn) {
+      const wishId = btn.getAttribute('data-id');
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        alert('Please login to grant a wish!');
+        window.location.href = './login/login.html';
+        return;
+      }
+
+      try {
+        const result = await apiService.grantWish(wishId, token);
+        if (result.message) {
+          alert(result.message);
+        } else {
+          alert('Thank you for your generosity! Wish granted! 🎁');
+          displayWishes(); // Refresh the list
+        }
+      } catch (err) {
+        console.error('Error granting wish:', err);
+        alert('Failed to grant wish: ' + (err.message || 'Unknown error'));
+      }
+    }
+  });
+}
+
 // Function to display wishes
 async function displayWishes() {
   if (!wishesContainer) return;
@@ -48,7 +78,7 @@ async function checkAuth() {
   if (token) {
     try {
       const user = await apiService.getCurrentUser(token);
-      if (user && user.id) {
+      if (user && (user.id || user._id)) {
         loginLink.style.display = "none";
         profileLink.style.display = "block";
       } else {
