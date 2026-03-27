@@ -48,7 +48,7 @@ async function checkAuth() {
   if (token) {
     try {
       const user = await apiService.getCurrentUser(token);
-      if (user && user.id) {
+      if (user && (user.id || user._id)) {
         loginLink.style.display = "none";
         profileLink.style.display = "block";
       } else {
