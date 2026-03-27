@@ -6,8 +6,9 @@ const wishesContainer = document.getElementById("wishes");
 // Handle granting a wish
 if (wishesContainer) {
   wishesContainer.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('grant-wish-btn')) {
-      const wishId = e.target.getAttribute('data-id');
+    const btn = e.target.closest('.grant-wish-btn');
+    if (btn) {
+      const wishId = btn.getAttribute('data-id');
       const token = localStorage.getItem('token');
       
       if (!token) {
@@ -26,7 +27,7 @@ if (wishesContainer) {
         }
       } catch (err) {
         console.error('Error granting wish:', err);
-        alert('Failed to grant wish. Please try again.');
+        alert('Failed to grant wish: ' + (err.message || 'Unknown error'));
       }
     }
   });
